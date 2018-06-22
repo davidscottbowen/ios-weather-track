@@ -10,32 +10,48 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import AlamofireSwiftyJSON
+import CoreLocation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var temperatureLabel: UILabel!
     
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
         
-        Alamofire.request("https://api.darksky.net/forecast/2c0e34dba4c9f289306ed7a074e79353/37.8145,-82.8071").responseJSON { response in
-            switch response.result {
-            case .success(let value) :
-                var json = JSON(value)
-                let currentWeather = json["currently"]
-                let temperature = currentWeather["temperature"].float
-                let temperatureValue = String(format: "%.0f", temperature!) + "ºF"
-                self.temperatureLabel.text = temperatureValue
-                
-            case .failure(let error) :
-                fatalError(error.localizedDescription)
-                
+        // Do any additional setup after loading the view.
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            let latitude = String(location.coordinate.latitude)
+            let longitude = String(location.coordinate.longitude)
+            
+            Alamofire.request("https://api.darksky.net/forecast/2c0e34dba4c9f289306ed7a074e79353/\(latitude),\(longitude)").responseJSON { response in
+                switch response.result {
+                case .success(let value) :
+                    var json = JSON(value)
+                    let currentWeather = json["currently"]
+                    let temperature = currentWeather["temperature"].float
+                    let temperatureValue = String(format: "%.0f", temperature!) + "ºF"
+                    self.temperatureLabel.text = temperatureValue
+                    
+                case .failure(let error) :
+                    fatalError(error.localizedDescription)
+                    
+                }
             }
         }
         
-        
-        // Do any additional setup after loading the view.
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            print("Unable to load your location.")
     }
     
     override func didReceiveMemoryWarning() {
