@@ -14,7 +14,6 @@
 		F7D91AB120DC7497006FBE97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7D91AAF20DC7497006FBE97 /* LaunchScreen.storyboard */; };
 		F7FBF95D20DC79510019FA09 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FBF95C20DC79510019FA09 /* HomeViewController.swift */; };
 		F7FBF96020DC7F820019FA09 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FBF95F20DC7F820019FA09 /* Constants.swift */; };
-		F7FBF96220DC891E0019FA09 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FBF96120DC891E0019FA09 /* WeatherInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		F7D91AB220DC7497006FBE97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7FBF95C20DC79510019FA09 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F7FBF95F20DC7F820019FA09 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F7FBF96120DC891E0019FA09 /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				F7FBF95F20DC7F820019FA09 /* Constants.swift */,
-				F7FBF96120DC891E0019FA09 /* WeatherInfo.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -226,7 +223,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7FBF96220DC891E0019FA09 /* WeatherInfo.swift in Sources */,
 				F7D91AA720DC7496006FBE97 /* AppDelegate.swift in Sources */,
 				F7FBF95D20DC79510019FA09 /* HomeViewController.swift in Sources */,
 				F7FBF96020DC7F820019FA09 /* Constants.swift in Sources */,

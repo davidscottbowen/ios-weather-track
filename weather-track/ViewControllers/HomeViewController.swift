@@ -12,7 +12,10 @@ import SwiftyJSON
 import AlamofireSwiftyJSON
 
 class HomeViewController: UIViewController {
-
+    
+    @IBOutlet weak var temperatureLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,8 +23,11 @@ class HomeViewController: UIViewController {
             switch response.result {
             case .success(let value) :
                 var json = JSON(value)
-                print(json)
-
+                let currentWeather = json["currently"]
+                let temperature = currentWeather["temperature"].float
+                let temperatureValue = String(format: "%.0f", temperature!) + "ºF"
+                self.temperatureLabel.text = temperatureValue
+                
             case .failure(let error) :
                 fatalError(error.localizedDescription)
                 

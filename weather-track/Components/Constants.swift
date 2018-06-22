@@ -15,7 +15,7 @@ struct Constants {
     
     
     struct API {
-        static let CurrentlyKey = "currently"
+//        static let CurrentlyKey = "currently"
         static let TemperatureKey = "temperature"
         static let DisplayNameKey = "displayName"
         static let ScheduleKey = "Schedule"
