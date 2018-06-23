@@ -13,7 +13,6 @@
 		F7D91AAE20DC7497006FBE97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7D91AAD20DC7497006FBE97 /* Assets.xcassets */; };
 		F7D91AB120DC7497006FBE97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7D91AAF20DC7497006FBE97 /* LaunchScreen.storyboard */; };
 		F7FBF95D20DC79510019FA09 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FBF95C20DC79510019FA09 /* HomeViewController.swift */; };
-		F7FBF96020DC7F820019FA09 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FBF95F20DC7F820019FA09 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		F7D91AB020DC7497006FBE97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F7D91AB220DC7497006FBE97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7FBF95C20DC79510019FA09 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		F7FBF95F20DC7F820019FA09 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +100,6 @@
 		F7FBF95E20DC7F610019FA09 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				F7FBF95F20DC7F820019FA09 /* Constants.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -225,7 +222,6 @@
 			files = (
 				F7D91AA720DC7496006FBE97 /* AppDelegate.swift in Sources */,
 				F7FBF95D20DC79510019FA09 /* HomeViewController.swift in Sources */,
-				F7FBF96020DC7F820019FA09 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,8 @@ import CoreLocation
 class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var displayLocationLabel: UILabel!
     
     let locationManager = CLLocationManager()
     
@@ -31,12 +33,20 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         if let location = locations.first {
             let latitude = String(location.coordinate.latitude)
             let longitude = String(location.coordinate.longitude)
+            print(latitude)
+            print(longitude)
+            
+            CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+                let locationName = placemarks?.first?.locality ?? "Unknown Location"
+                self.displayLocationLabel.text = locationName
+            }
             
             Alamofire.request("https://api.darksky.net/forecast/2c0e34dba4c9f289306ed7a074e79353/\(latitude),\(longitude)").responseJSON { response in
                 switch response.result {
                 case .success(let value) :
                     var json = JSON(value)
                     let currentWeather = json["currently"]
+                    print(currentWeather)
                     let temperature = currentWeather["temperature"].float
                     let temperatureValue = String(format: "%.0f", temperature!) + "ºF"
                     self.temperatureLabel.text = temperatureValue
@@ -51,7 +61,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print("Unable to load your location.")
+            errorLabel.text = "Cannot determine location at this time"
     }
     
     override func didReceiveMemoryWarning() {
