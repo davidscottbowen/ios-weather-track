@@ -16,7 +16,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var displayLocationLabel: UILabel!
-    @IBOutlet weak var day2Temp: UILabel!
     @IBOutlet weak var day3Temp: UILabel!
     @IBOutlet weak var day4Temp: UILabel!
     @IBOutlet weak var day5Temp: UILabel!
@@ -26,7 +25,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var day9Temp: UILabel!
     
     @IBOutlet weak var date1: UILabel!
-    @IBOutlet weak var date2: UILabel!
     @IBOutlet weak var date3: UILabel!
     @IBOutlet weak var date4: UILabel!
     @IBOutlet weak var date5: UILabel!
@@ -34,12 +32,20 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var date7: UILabel!
     @IBOutlet weak var date8: UILabel!
     @IBOutlet weak var date9: UILabel!
+    @IBOutlet weak var icon: UILabel!
+    @IBOutlet weak var icon1: UILabel!
+    @IBOutlet weak var icon2: UILabel!
+    @IBOutlet weak var icon3: UILabel!
+    @IBOutlet weak var icon4: UILabel!
+    @IBOutlet weak var icon5: UILabel!
+    @IBOutlet weak var icon6: UILabel!
     
     let locationManager = CLLocationManager()
     
     
     var dateArray: [String] = []
-    var myArray: [String] = [ ]
+    var myArray: [String] = []
+    var weatherConditionArray: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +58,44 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+    }
+    
+    
+    @IBAction func test(_ sender: Any) {
+        testData()
+    }
+    
+    
+    
+    func testData() {
+        self.date1.text = "06-26-2018 Tue"
+        self.temperatureLabel.text = "78˚F"
+        self.displayLocationLabel.text = "Paintsville"
+        
+        self.day3Temp.text = "78˚F"
+        self.day4Temp.text = "79˚F"
+        self.day5Temp.text = "80˚F"
+        self.day6Temp.text = "81˚F"
+        self.day7Temp.text = "82˚F"
+        self.day8Temp.text = "83˚F"
+        self.day9Temp.text = "84˚F"
+        
+        self.date3.text = "06-27-2018 Wed"
+        self.date4.text = "06-28-2018 Thu"
+        self.date5.text = "06-29-2018 Fri"
+        self.date6.text = "06-30-2018 Sat"
+        self.date7.text = "07-01-2018 Sun"
+        self.date8.text = "07-02-2018 Mon"
+        self.date9.text = "07-03-2018 Tue"
+        
+        self.icon.text = "rain"
+        self.icon1.text = "rain"
+        self.icon2.text = "rain"
+        self.icon3.text = "rain"
+        self.icon4.text = "rain"
+        self.icon5.text = "rain"
+        self.icon6.text = "rain"
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -76,6 +120,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                         let temp = schedule["temperatureHigh"].float!
                         let tempValue = String(format: "%.0f", temp) + "ºF"
                         self.myArray.append(tempValue)
+                        let condition = schedule["icon"].string!
+                        self.weatherConditionArray.append(condition)
                     }
                     
                     guard let times = dailyWeather["data"].array else { print("no"); fatalError() }
@@ -86,7 +132,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                         let dateFormatter = DateFormatter()
                         dateFormatter.timeZone = TimeZone(abbreviation: "EST") //Set timezone that you want
                         dateFormatter.locale = NSLocale.current
-                        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm" //Specify your format that you want
+                        dateFormatter.dateFormat = "MM-dd-yyyy EE" //Specify your format that you want
                         let strDate = dateFormatter.string(from: date)
                         self.dateArray.append(strDate)
 
@@ -99,7 +145,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                     let dateFormatter = DateFormatter()
                     dateFormatter.timeZone = TimeZone(abbreviation: "EST") //Set timezone that you want
                     dateFormatter.locale = NSLocale.current
-                    dateFormatter.dateFormat = "MM-dd-yyyy HH:mm" //Specify your format that you want
+                    dateFormatter.dateFormat = "MM-dd-yyyy EE" //Specify your format that you want
                     let strDate = dateFormatter.string(from: date)
                     
                     
@@ -124,6 +170,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                     self.date7.text = self.dateArray[5]
                     self.date8.text = self.dateArray[6]
                     self.date9.text = self.dateArray[7]
+                    
+                    self.icon.text = self.weatherConditionArray[1]
+                    self.icon1.text = self.weatherConditionArray[2]
+                    self.icon2.text = self.weatherConditionArray[3]
+                    self.icon3.text = self.weatherConditionArray[4]
+                    self.icon4.text = self.weatherConditionArray[5]
+                    self.icon5.text = self.weatherConditionArray[6]
+                    self.icon6.text = self.weatherConditionArray[7]
                     
      
                 case .failure(let error) :
